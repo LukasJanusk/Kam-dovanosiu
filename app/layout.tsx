@@ -41,7 +41,7 @@ export default function RootLayout({
           />
           <div className="absolute inset-0 bg-black/70" />
         </div>
-        <header className="flex gap-4 items-center min-h-20 min-w-sm px-2 z-10 relative bg-linear-to-b from-black to-black/80">
+        <header className="flex gap-4 items-center min-h-20 max-h-20 min-w-sm px-2 z-10 relative bg-linear-to-b from-black to-black/80">
           <Gift strokeWidth={2} size={32} className="text-violet-600" />
           <h1 className="md:text-4xl sm:text-3xl text-2xl font-bold italic text-violet-600 hidden sm:block">
             Kam dovanosiu?

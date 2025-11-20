@@ -1,7 +1,16 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // REMOVE LATER
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'img.daisyui.com',
+        pathname: '/images/stock/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
