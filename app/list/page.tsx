@@ -51,7 +51,11 @@ export default function ListPage() {
     <div className="flex flex-wrap items-center p-8 h-[calc(100vh-80px)] justify-around gap-2 overflow-y-auto  max-w-full">
       {events.map(event => (
         <div key={event.id}>
-          <EventCard title={event.title} description={event.description} />
+          <EventCard
+            id={event.id}
+            title={event.title}
+            description={event.description}
+          />
         </div>
       ))}
     </div>

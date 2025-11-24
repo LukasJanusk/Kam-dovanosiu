@@ -2,9 +2,8 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <main className="max-w-3xl ml-auto mr-auto p-8 md:p-4">
-      <h1 className=" z-10 text-4xl mb-2">Sveiki!</h1>
-
+    <main className="max-w-3xl ml-auto mr-auto p-8 md:p-4 h-full  min-h-screen">
+      <h1 className=" z-10 text-5xl mb-2 font-bold italic">Sveiki!</h1>
       <hr></hr>
       <div className="text-xl my-4">
         „Kam dovanosiu?“ – tai paprasta ir patogi slaptojo Kalėdų senelio

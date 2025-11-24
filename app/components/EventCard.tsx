@@ -1,11 +1,14 @@
+'use client';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type Props = {
   title: string;
   description?: string;
+  id: string;
 };
 
-export default function EventCard({ title, description }: Props) {
+export default function EventCard({ title, description, id }: Props) {
   return (
     <div className="card card-side bg-base-100 shadow-sm  border-2 card-md md:card-xl hover:border-violet-600 transition-all duration-200">
       <figure>
@@ -20,7 +23,9 @@ export default function EventCard({ title, description }: Props) {
         <h2 className="card-title">{title}</h2>
         <p>{description}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Atidaryti</button>
+          <Link href={`/list/${id}`} className="btn btn-primary">
+            Atidaryti
+          </Link>
         </div>
       </div>
     </div>
