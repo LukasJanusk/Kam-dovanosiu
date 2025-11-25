@@ -12,6 +12,8 @@
     "migrate:latest": "tsx app/database/migrate/latest"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "@stackframe/stack": "^2.8.52",
     "kysely": "^0.28.8",
     "lucide-react": "^0.554.0",
     "next": "16.0.3",

@@ -1,6 +1,10 @@
+'use client';
 import Link from 'next/link';
+import { useUser } from '@stackframe/stack';
 
 export default function Home() {
+  const user = useUser();
+  console.log('User on home page:', user);
   return (
     <main className="max-w-3xl ml-auto mr-auto p-8 md:p-4 h-full  min-h-screen">
       <h1 className=" z-10 text-5xl mb-2 font-bold italic">Sveiki!</h1>
@@ -24,9 +28,8 @@ export default function Home() {
           Spustelėję
           <Link
             className="text-blue-600 font-bold hover:text-violet-600"
-            href="/list"
+            href="/user"
           >
-            {' '}
             &quot;Aš&quot;{' '}
           </Link>
           galėsite papildyti savo pageidaujamų dovanų sąrašus bei nuorodas.

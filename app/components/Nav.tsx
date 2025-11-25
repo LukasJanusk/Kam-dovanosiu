@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { House, List, User2 } from 'lucide-react';
+import { UserButton } from '@stackframe/stack';
 
 export default function Nav() {
   const pathname = usePathname();
@@ -35,6 +36,7 @@ export default function Nav() {
         <User2 />
         <span className="md:block hidden">Aš</span>
       </Link>
+      <UserButton />
     </div>
   );
 }
