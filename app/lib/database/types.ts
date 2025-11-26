@@ -23,6 +23,26 @@ export type JsonValue = JsonArray | JsonObject | JsonPrimitive;
 
 export type Timestamp = ColumnType<Date, Date | string, Date | string>;
 
+export interface Event {
+  description: string;
+  id: Generated<number>;
+  title: string;
+}
+
+export interface Item {
+  description: string | null;
+  id: Generated<number>;
+  listId: number;
+  name: string;
+  url: string;
+}
+
+export interface List {
+  eventId: number;
+  id: Generated<number>;
+  userId: string;
+}
+
 export interface NeonAuthUsersSync {
   createdAt: Generated<Timestamp | null>;
   deletedAt: Timestamp | null;
@@ -34,5 +54,8 @@ export interface NeonAuthUsersSync {
 }
 
 export interface DB {
+  event: Event;
+  item: Item;
+  list: List;
   "neonAuth.usersSync": NeonAuthUsersSync;
 }

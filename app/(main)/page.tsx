@@ -6,7 +6,7 @@ export default function Home() {
   const user = useUser();
   console.log('User on home page:', user);
   return (
-    <main className="max-w-3xl ml-auto mr-auto p-8 md:p-4 h-full  min-h-screen">
+    <main className="max-w-3xl ml-auto mr-auto p-8 md:p-4">
       <h1 className=" z-10 text-5xl mb-2 font-bold italic">Sveiki!</h1>
       <hr></hr>
       <div className="text-xl my-4">
@@ -19,13 +19,13 @@ export default function Home() {
             className="text-blue-600 font-bold hover:text-violet-600"
             href="/list"
           >
-            &quot;Sąrašai&quot;{' '}
+            &quot;Renginiai&quot;{' '}
           </Link>
           pamatysite šiuo metu aktyvius slaptojo Kalėdų senelio renginius. Ten
           rasite visus dalyvius ir jų pageidaujamų dovanų nuorodas.
         </p>
         <p className="my-4">
-          Spustelėję
+          Spustelėję{' '}
           <Link
             className="text-blue-600 font-bold hover:text-violet-600"
             href="/user"

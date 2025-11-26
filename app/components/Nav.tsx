@@ -20,12 +20,12 @@ export default function Nav() {
       </Link>
       <Link
         className={`btn btn-md text-2xl ${
-          pathname === '/list' ? 'text-blue-700' : ''
+          pathname === '/event' ? 'text-blue-700' : ''
         }`}
-        href={`/list`}
+        href={`/event`}
       >
         <List />
-        <span className="md:block hidden">Sąrašai</span>
+        <span className="md:block hidden">Renginiai</span>
       </Link>
       <Link
         className={`btn btn-md text-2xl ${
