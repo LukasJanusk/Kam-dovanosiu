@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import { useEffect, useState, useRef } from 'react';
 
@@ -34,7 +35,7 @@ export default function Countdown() {
           className="flex flex-col p-2 bg-black/70 rounded-box text-neutral-content"
         >
           <span className="countdown font-mono text-5xl">
-            <span style={{ '--value': t.value }}>{t.value}</span>
+            <span style={{ '--value': t.value } as any}>{t.value}</span>
           </span>
           {t.label}
         </div>
