@@ -12,7 +12,7 @@ type Props = {
 export default async function EventPage({ params }: Props) {
   const { id } = await params;
   const repo = createRepository();
-  const user = await stackServer.getUser({ or: 'null' });
+  const user = await stackServer.getUser();
   const userId = user?.id ?? null;
 
   const event = await repo.getEvent(Number(id));
