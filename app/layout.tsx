@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { stackServerApp } from '@/app/stack';
 import { StackProvider, StackTheme } from '@stackframe/stack';
+import { ToastProvider } from './context/ToastProvider';
+
 export const metadata: Metadata = {
   title: 'Kam dovanosiu',
   description: 'Padės išrinkti kolektyvo slaptus Kalėdų senelius.',
@@ -13,9 +15,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <StackProvider app={stackServerApp}>
-          <StackTheme>{children}</StackTheme>
-        </StackProvider>
+        <ToastProvider>
+          <StackProvider app={stackServerApp}>
+            <StackTheme>{children}</StackTheme>
+          </StackProvider>
+        </ToastProvider>
       </body>
     </html>
   );

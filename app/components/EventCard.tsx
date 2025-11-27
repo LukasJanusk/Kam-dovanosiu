@@ -11,7 +11,7 @@ type Props = {
 
 export default function EventCard({ title, description, id }: Props) {
   return (
-    <div className="card card-side bg-linear-to-r from-red-900 via-base-200/90 to-base-300/90 via-40% shadow-sm  border-2 card-md md:card-xl  transition-all duration-200">
+    <div className="card card-side bg-linear-to-r from-red-900 via-base-200/90 to-base-300/90 via-40% shadow-sm  border-2 card-md md:card-xl  transition-all duration-200 ">
       <figure>
         <Image
           src={ChristmasTree}

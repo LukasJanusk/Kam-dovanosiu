@@ -1,4 +1,5 @@
 'use client';
+
 import Link from 'next/link';
 import { useUser } from '@stackframe/stack';
 
@@ -6,10 +7,12 @@ export default function Home() {
   const user = useUser();
   console.log('User on home page:', user);
   return (
-    <main className="max-w-3xl ml-auto mr-auto p-8 md:p-4">
-      <h1 className=" z-10 text-5xl mb-2 font-bold italic">Sveiki!</h1>
+    <main className="max-w-3xl ml-auto mr-auto p-8 md:p-4 bg-linear-to-r from-black/20 via-black/40 to-black/20 rounded-2xl m-8">
+      <h1 className="text-white z-10 text-5xl mb-2 font-bold italic">
+        Sveiki!
+      </h1>
       <hr></hr>
-      <div className="text-xl my-4">
+      <div className="text-xl my-4 text-white">
         „Kam dovanosiu?“ – tai paprasta ir patogi slaptojo Kalėdų senelio
         (Secret Santa) programa, sukurta taip, kad ją būtų lengva naudoti bet
         kam.{' '}

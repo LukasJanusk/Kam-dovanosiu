@@ -1,21 +1,35 @@
 'use client';
+
 import { Link2Icon } from 'lucide-react';
-import { NewItem } from '../schema/item';
-import React, { useState } from 'react';
+import { NewItem } from '../../schema/item';
+import React, { useEffect, useState } from 'react';
 
 type Props = {
   onSubmit: (item: NewItem) => void;
-  item: NewItem;
+  item?: NewItem;
 };
-export default function EditItem({ onSubmit, item }: Props) {
-  const [name, setName] = useState(item.name);
-  const [url, setUrl] = useState(item.url);
-  const [description, setDescription] = useState(item.description || '');
+export default function ItemForm({ onSubmit, item }: Props) {
+  const [name, setName] = useState(item?.name || '');
+  const [url, setUrl] = useState(item?.url || '');
+  const [description, setDescription] = useState(item?.description || '');
+
+  useEffect(() => {
+    const reset = () => {
+      setName(item?.name || '');
+      setUrl(item?.url || '');
+      setDescription(item?.description || '');
+    };
+
+    reset();
+  }, [item]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const formData = { name, url, description };
     onSubmit(formData);
+    setName('');
+    setUrl('');
+    setDescription('');
   };
   return (
     <div>

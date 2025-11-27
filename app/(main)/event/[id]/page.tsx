@@ -1,8 +1,9 @@
 import AddListButton from '@/app/components/AddListButton';
+import EditListButton from '@/app/components/EditListButton';
 import WishList from '@/app/components/WishList';
 import { createRepository } from '@/app/lib/repository';
 import { stackServer } from '@/app/stack-server';
-import { Edit } from 'lucide-react';
+
 type Props = {
   params: Promise<{
     id: string;
@@ -21,15 +22,17 @@ export default async function EventPage({ params }: Props) {
   const listExist = participantsWithItems.find(p => p.id === userId);
 
   return (
-    <div className="flex flex-wrap  md:p-8  gap-2 overflow-y-auto  max-w-full">
+    <div className="flex flex-wrap md:p-8 gap-2 overflow-y-auto max-w-full text-white">
       <div className="card card-lg w-full sm:card-sm">
         <div className="p-2">
-          <h1 className="card-title text-5xl my-8">{event.title}</h1>
-          <p className="p-4 rounded bg-amber-50/10 text-2xl ">
+          <div className="bg-linear-to-r from-black/20 via-black/40 to-black/20 flex items-center justify-center rounded-t-2xl">
+            <h1 className="card-title text-5xl my-8">{event.title}</h1>
+          </div>
+          <p className="p-4 bg-linear-to-r from-black/20 via-black/40 to-black/20 rounded-b-2xl text-2xl ">
             {event.description}
           </p>
           <div className="card-body flex">
-            <ul className="flex flex-col gap-2 overflow-auto rounded">
+            <ul className="flex flex-col gap-2 rounded">
               {participantsWithItems.map(participant => (
                 <li key={participant.id}>
                   <WishList
@@ -40,10 +43,10 @@ export default async function EventPage({ params }: Props) {
               ))}
             </ul>
             {listExist ? (
-              <button className="btn btn-primary btn-xl text-lg md:text-3xl py-8">
-                Redaguoti savo sąrašą
-                <Edit />{' '}
-              </button>
+              <EditListButton
+                listId={listExist.listId!}
+                userId={listExist.id}
+              />
             ) : (
               <AddListButton eventId={Number(id)} />
             )}

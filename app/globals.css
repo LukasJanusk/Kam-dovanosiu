@@ -27,3 +27,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   height: 100vh;
 }
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}

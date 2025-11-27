@@ -8,12 +8,12 @@ type Props = {
 
 export default function WishList({ participantName, items }: Props) {
   return (
-    <div className="collapse collapse-arrow from-black/60 via-gray-800/90 to-red-900/90 bg-linear-to-tr max-w-[1000px] ml-auto mr-auto">
+    <div className="collapse collapse-arrow from-black/60 via-gray-800/90 to-gray-500/90 bg-linear-to-tr max-w-[1000px] ml-auto mr-auto ">
       <input type="checkbox" />
-      <div className="collapse-title font-semibold text-xl">
+      <div className="collapse-title font-semibold text-xl ">
         {participantName}
       </div>
-      <div className="collapse-content flex flex-col gap-2">
+      <div className="collapse-content flex flex-col gap-2 ">
         {items.map(item => (
           <ItemComponent
             key={Number(item.id)}

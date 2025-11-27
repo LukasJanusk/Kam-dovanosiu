@@ -1,6 +1,6 @@
 'use client';
 
-import NewList from '@/app/components/NewList';
+import NewList from '@/app/components/List/NewList';
 import { NewItem } from '@/app/schema/item';
 import { useUser } from '@stackframe/stack';
 import { useSearchParams } from 'next/navigation';
@@ -33,6 +33,7 @@ export default function ListPage() {
       setTimeout(() => setToast(null), 3000);
     }
   };
+
   if (!eventId) {
     return (
       <div className="flex items-start justify-start gap-2 overflow-y-auto  max-w-full">

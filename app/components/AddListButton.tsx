@@ -9,7 +9,7 @@ type Props = {
 export default function AddListButton({ eventId }: Props) {
   return (
     <Link
-      className={`btn btn-success h-40 md:text-5xl text-3xl`}
+      className={`btn btn-success min-h-32 md:text-5xl text-3xl`}
       href={`/list/new?eventId=${eventId}`}
     >
       Pridėti savo dovanų sąrašą <PlusCircle className="h-24 w-24" />

@@ -25,6 +25,14 @@ export function repository(db: Database) {
       .executeTakeFirstOrThrow();
   };
 
+  const getListItems = async (listId: number) => {
+    return await db
+      .selectFrom('item')
+      .selectAll()
+      .where('item.listId', '=', listId)
+      .execute();
+  };
+
   const getParticipantsWithItems = async (eventId: number) => {
     const participants = await db
       .selectFrom('neonAuth.usersSync')
@@ -74,7 +82,43 @@ export function repository(db: Database) {
     return list;
   };
 
-  return { getUser, getEvent, getEvents, getParticipantsWithItems, createList };
+  const updateList = async (listId: number, items: Insertable<Item>[]) => {
+    const result = await db.transaction().execute(async trx => {
+      await trx.deleteFrom('item').where('item.listId', '=', listId).execute();
+
+      if (items.length === 0) return [];
+
+      const rows = items.map(i => ({
+        name: i.name,
+        description: i.description,
+        url: i.url,
+        listId,
+      }));
+
+      return await trx.insertInto('item').values(rows).returningAll().execute();
+    });
+
+    return result ?? [];
+  };
+
+  const deleteList = async (listId: number) => {
+    await db.deleteFrom('item').where('item.listId', '=', listId).execute();
+    return await db
+      .deleteFrom('list')
+      .where('list.id', '=', listId)
+      .executeTakeFirstOrThrow();
+  };
+
+  return {
+    getUser,
+    getEvent,
+    getEvents,
+    getParticipantsWithItems,
+    createList,
+    getListItems,
+    updateList,
+    deleteList,
+  };
 }
 
 export const createRepository = () => repository(db);
