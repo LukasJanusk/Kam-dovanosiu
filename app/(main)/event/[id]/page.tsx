@@ -22,15 +22,14 @@ export default async function EventPage({ params }: Props) {
   const listExist = participantsWithItems.find(p => p.id === userId);
 
   return (
-    <div className="flex flex-wrap md:p-8 gap-2 overflow-y-auto max-w-full text-white">
+    <div className="flex flex-wrap md:p-8 gap-2 overflow-y-auto max-w-full text-white md:px-12">
       <div className="card card-lg w-full sm:card-sm">
         <div className="p-2">
-          <div className="bg-linear-to-r from-black/20 via-black/40 to-black/20 flex items-center justify-center rounded-t-2xl">
-            <h1 className="card-title text-5xl my-8">{event.title}</h1>
+          <div className="bg-linear-to-r from-black/20 via-black/40 to-black/20 flex items-center justify-center rounded-2xl flex-col ml-auto mr-auto max-w-3xl">
+            <h1 className="card-title text-5xl my-8">{event.title}</h1>{' '}
+            <p className="p-4 text-2xl">{event.description}</p>
           </div>
-          <p className="p-4 bg-linear-to-r from-black/20 via-black/40 to-black/20 rounded-b-2xl text-2xl ">
-            {event.description}
-          </p>
+
           <div className="card-body flex">
             <ul className="flex flex-col gap-2 rounded">
               {participantsWithItems.map(participant => (

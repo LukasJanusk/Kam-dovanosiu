@@ -33,6 +33,32 @@ export function repository(db: Database) {
       .execute();
   };
 
+  const getUserLists = async (userId: string) => {
+    const lists = await db
+      .selectFrom('list')
+      .leftJoin('event', 'list.eventId', 'event.id')
+      .where('list.userId', '=', userId)
+      .selectAll()
+      .execute();
+
+    const listIds = lists.map(l => l.id);
+
+    const items = await db
+      .selectFrom('item')
+      .where('item.listId', 'in', listIds)
+      .selectAll()
+      .execute();
+
+    const listsWithItems = lists.map(list => ({
+      listId: list.id!,
+      eventId: list.eventId,
+      eventTitle: list.title || '',
+      eventDescription: list.description || '',
+      items: items.filter(i => i.listId === list.id),
+    }));
+
+    return listsWithItems;
+  };
   const getParticipantsWithItems = async (eventId: number) => {
     const participants = await db
       .selectFrom('neonAuth.usersSync')
@@ -118,6 +144,7 @@ export function repository(db: Database) {
     getListItems,
     updateList,
     deleteList,
+    getUserLists,
   };
 }
 

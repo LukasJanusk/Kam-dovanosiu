@@ -3,19 +3,31 @@
 import NewList from '@/app/components/List/NewList';
 import { NewItem } from '@/app/schema/item';
 import { useUser } from '@stackframe/stack';
-import { useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { toast } from 'sonner';
 
 export default function ListPage() {
   const searchParams = useSearchParams();
   const user = useUser();
   const eventId = searchParams.get('eventId');
-  const [toast, setToast] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleListSubmit = async (items: NewItem[]) => {
     const userId = user?.id;
+    const returnTo = encodeURIComponent(`/list`);
+    const signInUrl = `/handler/sign-in?after_auth_return_to=${returnTo}`;
     if (!userId) {
-      alert('User not logged in');
+      toast.warning('Vartotojas nerastas.', {
+        action: (
+          <button
+            className="btn ml-auto"
+            onClick={() => router.push(signInUrl)}
+          >
+            Prisijungti
+          </button>
+        ),
+      });
+
       return;
     }
     if (!eventId) {
@@ -29,8 +41,7 @@ export default function ListPage() {
       body: JSON.stringify({ eventId, userId, items }),
     });
     if (response.ok) {
-      setToast('Sąrašas sėkmingai sukurtas');
-      setTimeout(() => setToast(null), 3000);
+      toast.success('Sąrašas sėkmingai sukurtas');
     }
   };
 
@@ -45,13 +56,6 @@ export default function ListPage() {
     <div className="flex flex-col items-start justify-start overflow-y-auto h-full  max-w-full gap-4 p-4">
       <h1 className="text-3xl font-bold">Naujas sąrašas</h1>
       <NewList onSubmit={(items: NewItem[]) => handleListSubmit(items)} />
-      {toast && (
-        <div className="toast toast-start toast-bottom">
-          <div className="alert alert-success">
-            <span>{toast}</span>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

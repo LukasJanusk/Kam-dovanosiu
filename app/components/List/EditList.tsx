@@ -1,18 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import {
-  PlusCircle,
-  Trash2,
-  Edit,
-  AlertCircle,
-  XCircle,
-  CheckCircle,
-  Info,
-} from 'lucide-react';
+import { PlusCircle, Trash2, Edit } from 'lucide-react';
 import { Item, NewItem } from '../../schema/item';
 import ItemModal from './ItemModal';
 import { useUser } from '@stackframe/stack';
+import { toast } from 'sonner';
 
 type Props = {
   listId: number;
@@ -22,28 +15,6 @@ export default function EditList({ listId, currentItems }: Props) {
   const [items, setItems] = useState<Array<NewItem>>(currentItems);
   const [editItemIndex, setEditItemIndex] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
-  const [toast, setToast] = useState<{
-    id: number;
-    type: 'warning' | 'error' | 'success' | 'info';
-    message: string;
-  } | null>(null);
-
-  const show = (
-    type: 'warning' | 'error' | 'success' | 'info',
-    message: string
-  ) => {
-    const id = Date.now();
-
-    setToast({
-      id,
-      type,
-      message,
-    });
-
-    setTimeout(() => {
-      setToast(null);
-    }, 3000);
-  };
 
   const user = useUser();
 
@@ -63,11 +34,11 @@ export default function EditList({ listId, currentItems }: Props) {
   const handleSubmit = async () => {
     const userId = user?.id;
     if (!userId) {
-      show('error', 'Vartotojas nerastas');
+      toast.warning('Vartotojas nerasts');
       return;
     }
     if (!listId) {
-      show('error', 'Sąrašas nerastas');
+      toast.warning('Sąrašas nerastas');
       return;
     }
     try {
@@ -79,11 +50,11 @@ export default function EditList({ listId, currentItems }: Props) {
       });
 
       if (response.ok) {
-        show('success', 'Sąrašas sėkmingai redaguotas');
+        toast.success('Sąrašas sėkmingai redaguotas');
       }
     } catch (err) {
       console.error(err);
-      show('error', 'Nepavyko redaguoti sąrašo');
+      toast.error('Klaida redaguojant sąrašą, kreipkitės į administratorių.');
       return;
     } finally {
       setLoading(false);
@@ -92,27 +63,11 @@ export default function EditList({ listId, currentItems }: Props) {
 
   return (
     <div className="bg-black/60 h-full w-full flex flex-col p-2 gap-4  rounded-lg">
-      {toast && (
-        <div className="toast toast-start toast-bottom text-xl">
-          <div className={`alert alert-${toast.type}`}>
-            {toast.type === 'warning' ? (
-              <AlertCircle />
-            ) : toast.type === 'error' ? (
-              <XCircle />
-            ) : toast.type === 'success' ? (
-              <CheckCircle />
-            ) : (
-              <Info />
-            )}{' '}
-            <span>{toast.message}</span>
-          </div>
-        </div>
-      )}
       <ul>
         {items.map((item, i) => (
           <li
             key={i}
-            className="mt-4 p-4 border rounded-lg flex justify-between bg-black/50 gap-2 "
+            className="mt-4 p-4 border rounded-lg flex justify-between bg-black/30 gap-2 "
           >
             <h2 className="font-bold">{item.name}</h2>{' '}
             <span className="text-gray-500 hidden sm:block ml-auto">

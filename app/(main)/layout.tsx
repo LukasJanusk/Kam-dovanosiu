@@ -41,7 +41,7 @@ export default function MainLayout({
         </h1>
         <Nav />
       </header>
-      <main className="relative z-10 max-w-5xl w-full flex-1 ml-auto mr-auto bg-black/50 overflow-auto min-w-[384px] dark:text-white text-black">
+      <main className="relative z-10 max-w-5xl w-full flex-1 ml-auto mr-auto bg-black/50 overflow-auto min-w-sm dark:text-white text-black shrink-0">
         {children}
       </main>
       <div className="absolute right-56 bottom-1 z-50  w-40 h-40 p-2 hidden 2xl:block">

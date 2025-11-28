@@ -20,7 +20,7 @@ export default function Home() {
           Spustelėję{' '}
           <Link
             className="text-blue-600 font-bold hover:text-violet-600"
-            href="/list"
+            href="/event"
           >
             &quot;Renginiai&quot;{' '}
           </Link>
