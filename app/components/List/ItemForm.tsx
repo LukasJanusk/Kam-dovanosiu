@@ -42,7 +42,7 @@ export default function ItemForm({ onSubmit, item }: Props) {
           type="text"
           required
           placeholder="Pavadinimas"
-          className="input text-white"
+          className="input"
         />
         <label className="input">
           <Link2Icon />

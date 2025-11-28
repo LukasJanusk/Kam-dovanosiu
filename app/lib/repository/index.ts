@@ -50,7 +50,7 @@ export function repository(db: Database) {
       .execute();
 
     const listsWithItems = lists.map(list => ({
-      listId: list.id!,
+      listId: list.id,
       eventId: list.eventId,
       eventTitle: list.title || '',
       eventDescription: list.description || '',

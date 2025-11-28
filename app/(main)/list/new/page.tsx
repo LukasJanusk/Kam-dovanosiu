@@ -14,7 +14,7 @@ export default function ListPage() {
 
   const handleListSubmit = async (items: NewItem[]) => {
     const userId = user?.id;
-    const returnTo = encodeURIComponent(`/list`);
+    const returnTo = encodeURIComponent(`/list/new?eventId=${eventId}`);
     const signInUrl = `/handler/sign-in?after_auth_return_to=${returnTo}`;
     if (!userId) {
       toast.warning('Vartotojas nerastas.', {
@@ -54,7 +54,7 @@ export default function ListPage() {
   }
   return (
     <div className="flex flex-col items-start justify-start overflow-y-auto h-full  max-w-full gap-4 p-4">
-      <h1 className="text-3xl font-bold">Naujas sąrašas</h1>
+      <h1 className="text-3xl font-bold text-white">Naujas sąrašas</h1>
       <NewList onSubmit={(items: NewItem[]) => handleListSubmit(items)} />
     </div>
   );

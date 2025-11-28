@@ -8,7 +8,7 @@ import DeleteModal from '../DeleteModal';
 
 type Props = {
   initialLists: {
-    listId: number;
+    listId: number | null;
     eventId: number;
     eventTitle: string;
     items: Item[];
