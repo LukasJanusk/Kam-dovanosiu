@@ -32,15 +32,22 @@ export function repository(db: Database) {
       .where('item.listId', '=', listId)
       .execute();
   };
-
+  const getListByUserIdAndEventId = async (userId: string, eventId: number) => {
+    return await db
+      .selectFrom('list')
+      .selectAll()
+      .where('list.userId', '=', userId)
+      .where('list.eventId', '=', eventId)
+      .executeTakeFirst();
+  };
   const getUserLists = async (userId: string) => {
     const lists = await db
       .selectFrom('list')
       .leftJoin('event', 'list.eventId', 'event.id')
       .where('list.userId', '=', userId)
-      .selectAll()
+      .select(['list.id', 'list.eventId', 'event.description', 'event.title'])
       .execute();
-
+    if (lists.length < 1) return [];
     const listIds = lists.map(l => l.id);
 
     const items = await db
@@ -57,12 +64,13 @@ export function repository(db: Database) {
       items: items.filter(i => i.listId === list.id),
     }));
 
+    console.log(listsWithItems);
     return listsWithItems;
   };
   const getParticipantsWithItems = async (eventId: number) => {
     const participants = await db
       .selectFrom('neonAuth.usersSync')
-      .leftJoin('list', 'neonAuth.usersSync.id', 'list.userId')
+      .innerJoin('list', 'neonAuth.usersSync.id', 'list.userId')
       .select([
         'neonAuth.usersSync.id',
         'neonAuth.usersSync.name',
@@ -135,9 +143,26 @@ export function repository(db: Database) {
       .executeTakeFirstOrThrow();
   };
 
+  const getList = async (listId: number) => {
+    return await db
+      .selectFrom('list')
+      .selectAll()
+      .where('list.id', '=', listId)
+      .executeTakeFirst();
+  };
+
+  const getListsByEventId = async (eventId: number) => {
+    return await db
+      .selectFrom('list')
+      .selectAll()
+      .where('list.eventId', '=', eventId)
+      .execute();
+  };
   return {
     getUser,
     getEvent,
+    getList,
+    getListsByEventId,
     getEvents,
     getParticipantsWithItems,
     createList,
@@ -145,6 +170,7 @@ export function repository(db: Database) {
     updateList,
     deleteList,
     getUserLists,
+    getListByUserIdAndEventId,
   };
 }
 

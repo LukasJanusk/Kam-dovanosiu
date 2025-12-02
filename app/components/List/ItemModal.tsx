@@ -43,7 +43,7 @@ export default function ItemModal({
         <div className="modal-box  max-w-2xl min-w-sm">
           <button
             onClick={() => closeDialog()}
-            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 text-black dark:text-white"
           >
             ✕
           </button>

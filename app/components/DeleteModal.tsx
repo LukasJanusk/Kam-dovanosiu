@@ -19,7 +19,7 @@ export default function DeleteModal({ listId, onDelete }: Props) {
   const handleDelete = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/list/delete', {
+      const response = await fetch('/api/list', {
         method: 'DELETE',
         body: JSON.stringify({ listId }),
         headers: { 'Content-Type': 'application/json' },
@@ -28,8 +28,7 @@ export default function DeleteModal({ listId, onDelete }: Props) {
         toast.success('Sąrašas ištrintas.');
       }
       onDelete(listId);
-    } catch (err) {
-      console.error(err);
+    } catch {
       toast.error('Įvyko klaida ištrinant sąrašą.');
     } finally {
       setLoading(false);
@@ -40,7 +39,7 @@ export default function DeleteModal({ listId, onDelete }: Props) {
   return (
     <>
       <button onClick={openDialog} disabled={loading}>
-        <Trash2 className="hover:text-red-700 transition-all" />
+        <Trash2 className="hover:text-red-700 transition-all text-slate-200 hover:rotate-5 duration-200" />
       </button>{' '}
       <dialog ref={dialogRef} id="my_modal_3" className="modal">
         <div className="modal-box max-w-2xl min-w-sm">

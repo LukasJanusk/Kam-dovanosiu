@@ -11,7 +11,7 @@ export default function Home() {
       <h1 className="text-white z-10 text-5xl mb-2 font-bold italic">
         Sveiki!
       </h1>
-      <hr></hr>
+      <div className={`bg-white my-2 h-1 w-full px-4 rounded-full`} />
       <div className="text-xl my-4 text-white">
         „Kam dovanosiu?“ – tai paprasta ir patogi slaptojo Kalėdų senelio
         (Secret Santa) programa, sukurta taip, kad ją būtų lengva naudoti bet

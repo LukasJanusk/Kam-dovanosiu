@@ -33,8 +33,11 @@ export default function ItemForm({ onSubmit, item }: Props) {
   };
   return (
     <div>
-      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-        <h1 className="text-2xl">Dovana</h1>
+      <form
+        className="flex flex-col gap-4 text-base-100"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="text-2xl text-black dark:text-white">Dovana</h1>
         <label className="label"></label>{' '}
         <input
           value={name}
@@ -42,16 +45,16 @@ export default function ItemForm({ onSubmit, item }: Props) {
           type="text"
           required
           placeholder="Pavadinimas"
-          className="input"
+          className="input text-black dark:text-white"
         />
         <label className="input">
-          <Link2Icon />
+          <Link2Icon className="text-black dark:text-white" />
           <input
             value={url}
             onChange={e => setUrl(e.target.value)}
             type="text"
             required
-            className="grow"
+            className="grow text-black dark:text-white"
             placeholder="Nuoroda"
           />
         </label>
@@ -60,7 +63,7 @@ export default function ItemForm({ onSubmit, item }: Props) {
           <textarea
             value={description}
             onChange={e => setDescription(e.target.value)}
-            className="textarea h-32"
+            className="textarea h-32 text-black dark:text-white"
             placeholder="Aprašymas"
             maxLength={200}
           ></textarea>

@@ -32,7 +32,7 @@ export default async function EditListPage({ searchParams }: Props) {
 
   return (
     <div className="flex flex-col items-start justify-start overflow-y-auto h-full  max-w-full gap-4 p-4">
-      <h1 className="text-3xl font-bold">Sąrašo redagavimas</h1>
+      <h1 className="text-3xl font-bold text-white">Sąrašo redagavimas</h1>
       <EditList listId={Number(listId)} currentItems={items} />
     </div>
   );

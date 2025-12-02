@@ -33,10 +33,10 @@ export default function NewList({ onSubmit }: Props) {
         {items.map((item, i) => (
           <li
             key={i}
-            className="mt-4 p-4 border rounded-lg flex justify-between bg-black/50 gap-2 "
+            className="mt-4 p-4 border rounded-lg flex justify-between bg-black/50 gap-2 text-white"
           >
-            <h2 className="font-bold">{item.name}</h2>{' '}
-            <span className="text-gray-500 hidden sm:block ml-auto">
+            <h2 className="font-bold text-white">{item.name}</h2>{' '}
+            <span className="text-white opacity-50 hidden sm:block ml-auto">
               {item.url.length > 30
                 ? item.url.substring(0, 30) + '...'
                 : item.url}
@@ -46,7 +46,7 @@ export default function NewList({ onSubmit }: Props) {
               buttonStyles="ml-auto"
               onButtonClick={() => setEditItemIndex(i)}
               buttonIcon={
-                <Edit className="hover:text-blue-700 duration-200 rotate-0 hover:rotate-5 transition-all " />
+                <Edit className="hover:text-blue-700 duration-200 text-slate-200 rotate-0 hover:rotate-5 transition-all " />
               }
               item={item}
             />
@@ -54,7 +54,7 @@ export default function NewList({ onSubmit }: Props) {
               onClick={() => setItems(items.filter(i => i.name !== item.name))}
               className="group"
             >
-              <Trash2 className="duration-200 rotate-0 transition-all hover:rotate-5 hover:text-red-700" />
+              <Trash2 className="duration-200 rotate-0 text-slate-200 transition-all hover:rotate-5 hover:text-red-700" />
             </button>
           </li>
         ))}

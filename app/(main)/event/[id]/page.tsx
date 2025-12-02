@@ -42,10 +42,7 @@ export default async function EventPage({ params }: Props) {
               ))}
             </ul>
             {listExist ? (
-              <EditListButton
-                listId={listExist.listId!}
-                userId={listExist.id}
-              />
+              <EditListButton listId={listExist.listId!} />
             ) : (
               <AddListButton eventId={Number(id)} />
             )}

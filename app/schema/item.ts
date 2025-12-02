@@ -1,11 +1,11 @@
 import z from 'zod';
 
-const schema = z.object({
+export const schema = z.object({
   id: z.coerce.number(),
   listId: z.coerce.number(),
   name: z.string().max(100).min(1),
-  url: z.url(),
-  description: z.string().optional().nullable(),
+  url: z.string(),
+  description: z.string().nullable(),
 });
 const newItem = schema.omit({ id: true, listId: true });
 
